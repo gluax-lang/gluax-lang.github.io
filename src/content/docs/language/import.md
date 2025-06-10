@@ -1,10 +1,8 @@
 ---
-title: import
-sidebar:
-  order: 2
+title: Import
 ---
 
-The `import` keyword is used to include definitions from other modules or files into the current file. This allows you to organize your code across multiple files and reuse code easily.
+The `import` keyword is used to include definitions from other modules or files into the current file.
 
 ## Syntax
 
@@ -19,14 +17,16 @@ The `import` keyword is used to include definitions from other modules or files 
 ## Example
 
 ```gluax
+import "utils/helpers.gluax" as helpers;
+// same as
 import "utils/helpers" as helpers;
+// same as
+import "utils/helpers";
 
 func main() {
     helpers::do_something();
 }
 ```
-
-...existing code...
 
 ## Notes
 

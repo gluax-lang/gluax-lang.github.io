@@ -1,7 +1,5 @@
 ---
-title: Simple Expressions
-sidebar:
-  order: 1
+title: Basic Expressions
 ---
 
 ## Literals
@@ -14,13 +12,13 @@ false       // Boolean false
 nil         // Nil value
 ```
 
-## Vararg Expression
+## Vararg
 
 ```gluax
 ...
 ```
 
-## Arithmetic Expressions
+## Arithmetic
 
 ```gluax
 1 + 2   // Addition
@@ -31,7 +29,7 @@ nil         // Nil value
 2 ** 8  // Exponentiation
 ```
 
-## Logical Expressions
+## Logical
 
 ```gluax
 true && false
@@ -39,7 +37,7 @@ true || false
 !true
 ```
 
-## Relational Expressions
+## Relational
 
 ```gluax
 a < b
@@ -50,7 +48,7 @@ a == b
 a != b
 ```
 
-## Bitwise Expressions
+## Bitwise
 
 ```gluax
 a | b   // OR
@@ -67,7 +65,7 @@ a >> b  // Right shift
 "foo" .. "bar"
 ```
 
-## Unary Expressions
+## Unary
 
 ```gluax
 -a          // Negation
@@ -76,11 +74,10 @@ a >> b  // Right shift
 #a          // Length
 ```
 
-## Parenthesized and Tuple Expressions
+## Parenthesized
 
 ```gluax
 (a + b)
-(a, b, c)   // Tuple
 ```
 
 ## Unsafe Cast

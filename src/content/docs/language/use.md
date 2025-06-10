@@ -1,7 +1,5 @@
 ---
-title: use
-sidebar:
-  order: 3
+title: Use
 ---
 
 The `use` keyword is used to bring specific definitions (such as functions, structs, or constants) from another module or namespace into the current scope. This allows you to reference those definitions directly, without needing to prefix them with the module path.
@@ -15,7 +13,9 @@ The `use` keyword is used to bring specific definitions (such as functions, stru
 ## Example
 
 ```gluax
-use utils::helpers::do_something as do_help;
+use utils::helpers::do_something as do_something;
+// same as
+use utils::helpers::do_something;
 
 func main() {
     do_help();
@@ -26,4 +26,3 @@ func main() {
 
 - `use` statements must appear at the top level of a file, after all `import` statements but before other items.
 - The path must refer to a valid, public definition in the imported module.
-- Using `as` allows you to avoid naming conflicts or shorten long names.

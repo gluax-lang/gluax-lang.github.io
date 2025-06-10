@@ -1,7 +1,5 @@
 ---
-title: let
-sidebar:
-  order: 0
+title: Let
 ---
 
 The `let` keyword is used to declare variables in GLuaX. It supports declaring one or more variables, optionally with type annotations, and requires an initializer for each variable.

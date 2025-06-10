@@ -31,8 +31,8 @@ export default defineConfig({
           autogenerate: { directory: "start-here" },
         },
         {
-          label: "Syntax",
-          autogenerate: { directory: "syntax" },
+          label: "Language",
+          autogenerate: { directory: "language" },
         },
       ],
     }),

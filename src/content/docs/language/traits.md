@@ -1,7 +1,5 @@
 ---
-title: trait
-sidebar:
-  order: 7
+title: Traits
 ---
 
 The `trait` keyword is used to define a set of required methods that structs can implement. Traits allow you to specify shared behavior across different types, similar to interfaces in other languages.
@@ -51,6 +49,89 @@ impl TraitName for StructName;
 ```
 
 By following this naming pattern, you ensure that your methods do not clash with others, making trait usage safer and more compatible with code outside/inside of GLuaX.
+
+## Implementing Traits
+
+### Example 1
+
+```gluax
+struct MyStruct {}
+
+trait MyTrait {
+    func my_method(self);
+
+    func another_method(self) {
+    }
+}
+
+impl MyStruct {
+    func my_method(self) {
+        print("MyStruct::my_method called");
+    }
+}
+/* OR
+impl MyStruct {
+    func my_method(self) {
+        print("MyStruct::my_method called");
+    }
+
+    func another_method(self) {
+    }
+}
+*/
+
+impl MyTrait for MyStruct;
+
+func test(t: dyn MyTrait) {
+    t.my_method();
+}
+```
+
+### Example 2
+
+```gluax
+trait MyTrait {
+    func my_method(self);
+
+    func another_method(self) {
+    }
+}
+
+impl map<number, string> {
+    func my_method(self) {
+        print("MyTrait method called on map<number, string>");
+    }
+}
+
+impl MyTrait for map<number, string>;
+
+func test(t: dyn MyTrait) {
+    t.my_method();
+}
+```
+
+### Example 3
+
+```gluax
+trait MyTrait {
+    func my_method(self);
+
+    func another_method(self) {
+    }
+}
+
+impl<K, V> map<K, V> {
+    func my_method(self) {
+        print("MyTrait method called on map<K, V>");
+    }
+}
+
+impl<K, V> MyTrait for map<K, V>;
+
+func test(t: dyn MyTrait) {
+    t.my_method();
+}
+```
 
 ## Restrictions
 

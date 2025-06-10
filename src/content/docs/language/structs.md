@@ -1,17 +1,15 @@
 ---
-title: struct
-sidebar:
-  order: 4
+title: Structs
 ---
 
-The `struct` keyword is used to define custom data types in GLuaX. Structs are collections of named fields, each with a specified type, and can only be declared at the top level of a file (as items).
+The `struct` keyword is used to define custom data types in GLuaX. Structs are collections of named fields, each with a specified type, and can only be declared at the top level of a file.
 
 ## Syntax
 
 ```gluax
 [pub] struct Name {
-    [pub] field1: Type1,
-    field2: Type2,
+    [pub] field1: Type,
+    field2: Type,
     // ...
 }
 ```
@@ -54,9 +52,28 @@ impl Counter {
         self.value = self.value + 1;
     }
 }
+
+// Generic struct with methods
+struct Pair<T, U> {
+    first: T,
+    second: U,
+}
+
+impl<T, U> Pair<T, U> {
+    func new(first: T, second: U) -> Pair<T, U> {
+        Pair { first: first, second: second }
+    }
+
+    func get_first(self) -> T {
+        self.first
+    }
+
+    func get_second(self) -> U {
+        self.second
+    }
+}
+
+let pair = Pair::<number, string>::new(1, "hello");
+// or
+let pair = Pair { first: 1, second: "hello" };
 ```
-
-## Notes
-
-- Structs can only be declared at the top level of a file, not inside functions or other items.
-- Methods can be defined for structs using `impl` blocks.
