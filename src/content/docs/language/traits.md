@@ -2,7 +2,7 @@
 title: Traits
 ---
 
-The `trait` keyword is used to define a set of required methods that classes can implement. Traits allow you to specify shared behavior across different types, similar to interfaces in other languages.
+The `trait` keyword is used to define a set of required methods that classes can implement. Traits allow you to specify shared behavior across different types, similar to interfaces in other languages and work very similarly to Rust traits.
 
 ## Syntax
 
@@ -10,21 +10,21 @@ The `trait` keyword is used to define a set of required methods that classes can
 [pub] trait Name [: SuperTrait1 + SuperTrait2] {
     func required_method(self);
 
-    func another_method(self) {
-
+    func method_with_default(self) {
+        // default implementation
     }
 }
 ```
 
 - Traits can inherit from one or more supertraits using `:`.
-- If body is provided, it can contain default implementations for methods.
+- Methods can have default implementations in the trait body.
 
 ## Example
 
 ```gluax
 trait Drawable {
-    func RNDX_Drawable_draw(self);
-    func RNDX_Drawable_area(self) -> number;
+    func draw(self);
+    func area(self) -> number;
 }
 ```
 
@@ -32,107 +32,117 @@ trait Drawable {
 
 ```gluax
 trait Shape: Drawable {
-    func RNDX_Shape_area(self) -> number;
+    func perimeter(self) -> number;
+
+    func describe(self) {
+        printf("This shape has area: %s", self.area());
+    }
 }
 ```
-
-## Naming Conventions for Trait Methods
-
-To prevent naming conflicts between trait methods and methods in classes or other traits, **trait method names must be globally unique**.
-
-It is **strongly recommended** to prefix each method name with your addon name, followed by the trait name, and then the method name, using underscores as separators. For example: `MYADDON_TraitName_methodName`.
-
-This convention is necessary because trait methods are implemented directly inside classes. Implementing a trait is simply:
-
-```gluax
-impl TraitName for ClassName;
-```
-
-By following this naming pattern, you ensure that your methods do not clash with others, making trait usage safer and more compatible with code outside/inside of GLuaX.
 
 ## Implementing Traits
 
-### Example 1
+Traits are implemented using `impl TraitName for Type` blocks, where you define the required methods directly in the impl block.
+
+### Example 1 - Class Implementation
 
 ```gluax
-class MyClass {}
+class Rectangle {
+    width: number,
+    height: number,
+}
 
-trait MyTrait {
-    func my_method(self);
+trait Drawable {
+    func draw(self);
+    func area(self) -> number;
+}
 
-    func another_method(self) {
+impl Drawable for Rectangle {
+    func draw(self) {
+        printf("Drawing rectangle %dx%d", self.width, self.height);
+    }
+
+    func area(self) -> number {
+        return self.width * self.height;
     }
 }
 
-impl MyClass {
-    func my_method(self) {
-        print("MyClass::my_method called");
-    }
-}
-/* OR
-impl MyClass {
-    func my_method(self) {
-        print("MyClass::my_method called");
-    }
-
-    func another_method(self) {
-    }
-}
-*/
-
-impl MyTrait for MyClass;
-
-func test(t: dyn MyTrait) {
-    t.my_method();
+func test(d: dyn Drawable) {
+    d.draw();
+    printf("Area: %d", d.area());
 }
 ```
 
-### Example 2
+### Example 2 - Generic Type Implementation
 
 ```gluax
-trait MyTrait {
-    func my_method(self);
+trait Display {
+    func to_string(self) -> string;
+}
 
-    func another_method(self) {
+impl<K, V> Display for map<K, V> {
+    func to_string(self) -> string {
+        return "Map";
     }
 }
 
-impl map<number, string> {
-    func my_method(self) {
-        print("MyTrait method called on map<number, string>");
-    }
-}
-
-impl MyTrait for map<number, string>;
-
-func test(t: dyn MyTrait) {
-    t.my_method();
+func print_it(d: dyn Display) {
+    print(d.to_string());
 }
 ```
 
-### Example 3
+### Example 3 - Built-in Type Implementation
 
 ```gluax
-trait MyTrait {
-    func my_method(self);
+pub trait Formatter {
+    func format(self) -> string;
+}
 
-    func another_method(self) {
+impl Formatter for number {
+    func format(self) -> string {
+        string::format("Number: %d", self)
     }
 }
 
-impl<K, V> map<K, V> {
-    func my_method(self) {
-        print("MyTrait method called on map<K, V>");
+impl Formatter for string {
+    func format(self) -> string {
+        string::format("String: %s", self)
     }
-}
-
-impl<K, V> MyTrait for map<K, V>;
-
-func test(t: dyn MyTrait) {
-    t.my_method();
 }
 ```
 
-## Restrictions
+## Default Implementations
 
-- If a method is already defined in a supertrait, you cannot define a method with the same name in the current trait. Method names must be unique across the entire trait inheritance chain.
+Traits can provide default implementations for methods, which implementing types can use or override:
+
+```gluax
+trait Animal {
+    func name(self) -> string;
+
+    func speak(self) {
+        print(self.name() .. " makes a sound");
+    }
+
+    func introduce(self) {
+        print("Hi, I'm " .. self.name());
+        self.speak();
+    }
+}
+
+class Dog {
+    pet_name: string,
+}
+
+impl Animal for Dog {
+    func name(self) -> string {
+        return self.pet_name;
+    }
+
+    // Override the default speak implementation
+    func speak(self) {
+        print(self.name() .. " barks!");
+    }
+
+    // introduce() uses the default implementation
+}
+```
