@@ -120,7 +120,7 @@ Initially, GLuaX was designed with just structs and traits. To make traits work 
 
 ```lua
 -- GLuaX would generate something like this
-class_trait_A_methods = {
+struct_trait_A_methods = {
     method1 = function(self) ... end,
     method2 = function(self) ... end,
 }
