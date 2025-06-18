@@ -2,7 +2,7 @@
 title: Traits
 ---
 
-The `trait` keyword is used to define a set of required methods that structs can implement. Traits allow you to specify shared behavior across different types, similar to interfaces in other languages.
+The `trait` keyword is used to define a set of required methods that classes can implement. Traits allow you to specify shared behavior across different types, similar to interfaces in other languages.
 
 ## Syntax
 
@@ -38,14 +38,14 @@ trait Shape: Drawable {
 
 ## Naming Conventions for Trait Methods
 
-To prevent naming conflicts between trait methods and methods in structs or other traits, **trait method names must be globally unique**.
+To prevent naming conflicts between trait methods and methods in classes or other traits, **trait method names must be globally unique**.
 
 It is **strongly recommended** to prefix each method name with your addon name, followed by the trait name, and then the method name, using underscores as separators. For example: `MYADDON_TraitName_methodName`.
 
-This convention is necessary because trait methods are implemented directly inside structs. Implementing a trait is simply:
+This convention is necessary because trait methods are implemented directly inside classes. Implementing a trait is simply:
 
 ```gluax
-impl TraitName for StructName;
+impl TraitName for ClassName;
 ```
 
 By following this naming pattern, you ensure that your methods do not clash with others, making trait usage safer and more compatible with code outside/inside of GLuaX.
@@ -55,7 +55,7 @@ By following this naming pattern, you ensure that your methods do not clash with
 ### Example 1
 
 ```gluax
-struct MyStruct {}
+class MyClass {}
 
 trait MyTrait {
     func my_method(self);
@@ -64,15 +64,15 @@ trait MyTrait {
     }
 }
 
-impl MyStruct {
+impl MyClass {
     func my_method(self) {
-        print("MyStruct::my_method called");
+        print("MyClass::my_method called");
     }
 }
 /* OR
-impl MyStruct {
+impl MyClass {
     func my_method(self) {
-        print("MyStruct::my_method called");
+        print("MyClass::my_method called");
     }
 
     func another_method(self) {
@@ -80,7 +80,7 @@ impl MyStruct {
 }
 */
 
-impl MyTrait for MyStruct;
+impl MyTrait for MyClass;
 
 func test(t: dyn MyTrait) {
     t.my_method();

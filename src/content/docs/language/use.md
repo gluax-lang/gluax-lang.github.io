@@ -2,7 +2,7 @@
 title: Use
 ---
 
-The `use` keyword is used to bring specific definitions (such as functions, structs, or constants) from another module or namespace into the current scope. This allows you to reference those definitions directly, without needing to prefix them with the module path.
+The `use` keyword is used to bring specific definitions (such as functions, classes, or constants) from another module or namespace into the current scope. This allows you to reference those definitions directly, without needing to prefix them with the module path.
 
 ## Syntax
 

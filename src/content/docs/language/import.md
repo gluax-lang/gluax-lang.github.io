@@ -30,7 +30,7 @@ func main() {
 
 ## Notes
 
-- **All import statements must come before any other items in the file.** You cannot place an import after a struct, function, or any other item.
+- **All import statements must come before any other items in the file.** You cannot place an import after a class, function, or any other item.
 - The `.gluax` extension in the import path is optional.
 - You can use relative paths like `./` or `../` in the import string.
 - Import paths must resolve to files within your workspace/project directory. Attempting to import files outside the project directory will result in an error.

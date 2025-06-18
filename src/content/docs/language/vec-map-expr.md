@@ -5,10 +5,10 @@ title: vec/map Expression
 GLuaX provides concise syntax for initializing vectors and maps. You can optionally specify type parameters using `::<type>`.
 
 > **Note:**
-> The syntax for initializing a vector or map looks very similar to struct initialization in GLuaX. The difference is that the compiler detects when you are initializing a `map` or `vec` and parses it differently.
+> The syntax for initializing a vector or map looks very similar to class initialization in GLuaX. The difference is that the compiler detects when you are initializing a `map` or `vec` and parses it differently.
 
 > **Tip:**
-> It is recommended to write the curly braces directly after `map` or `vec` (e.g., `map{...}` or `vec{...}`), and **not** with a space like `map {...}`. This helps visually and syntactically distinguish map/vector initialization from struct initialization.
+> It is recommended to write the curly braces directly after `map` or `vec` (e.g., `map{...}` or `vec{...}`), and **not** with a space like `map {...}`. This helps visually and syntactically distinguish map/vector initialization from class initialization.
 
 ### Vector Initialization
 

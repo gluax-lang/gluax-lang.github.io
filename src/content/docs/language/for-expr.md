@@ -24,7 +24,7 @@ for i = 1, 10, 2 {
 
 ### For-In Loop
 
-The `for-in` loop is used to iterate over collections like maps, vectors, or any struct that implements the required iteration functions.
+The `for-in` loop is used to iterate over collections like maps, vectors, or any class that implements the required iteration functions.
 
 ```gluax
 let m = map{
@@ -92,9 +92,9 @@ end
 
 </details>
 
-#### Making Structs Iterable
+#### Making Classes Iterable
 
-You can make your own structs iterable in a `for-in` loop by implementing certain reserved functions. For example, when iterating over a `vec` using a `for-in` loop, it is compiled to a simple numeric loop (`for i = 1, #v do local v = #v[i] end`) for efficiency, instead of using `pairs` or `ipairs`. This is achieved by defining these functions:
+You can make your own classes iterable in a `for-in` loop by implementing certain reserved functions. For example, when iterating over a `vec` using a `for-in` loop, it is compiled to a simple numeric loop (`for i = 1, #v do local v = #v[i] end`) for efficiency, instead of using `pairs` or `ipairs`. This is achieved by defining these functions:
 
 ```gluax
 #[inline]
@@ -115,7 +115,7 @@ func __x_iter_pairs(self) -> (func(table, any) -> (K, V), Self) {
 }
 ```
 
-By implementing these functions, any struct can be made iterable in a `for-in` loop, allowing for efficient and flexible iteration patterns.
+By implementing these functions, any class can be made iterable in a `for-in` loop, allowing for efficient and flexible iteration patterns.
 
 > **Note:**
-> The way to define iterable functions for structs may change in the future. It’s possible that iteration could be handled using traits or another mechanism in later versions of GLuaX. This is still subject to change until the language reaches version 1.0.
+> The way to define iterable functions for classes may change in the future. It’s possible that iteration could be handled using traits or another mechanism in later versions of GLuaX. This is still subject to change until the language reaches version 1.0.

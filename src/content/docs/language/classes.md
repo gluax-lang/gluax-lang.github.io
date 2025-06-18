@@ -1,13 +1,13 @@
 ---
-title: Structs
+title: Classes
 ---
 
-The `struct` keyword is used to define custom data types in GLuaX. Structs are collections of named fields, each with a specified type, and can only be declared at the top level of a file.
+The `class` keyword is used to define custom data types in GLuaX. Classes are collections of named fields, each with a specified type, and can only be declared at the top level of a file.
 
 ## Syntax
 
 ```gluax
-[pub] struct Name {
+[pub] class Name {
     [pub] field1: Type,
     field2: Type,
     // ...
@@ -21,21 +21,21 @@ The `struct` keyword is used to define custom data types in GLuaX. Structs are c
 ## Example
 
 ```gluax
-struct Point {
+class Point {
     pub x: number,
     pub y: number,
     label: string,
 }
 ```
 
-This defines a `Point` struct with two public fields (`x` and `y`) and one private field (`label`).
+This defines a `Point` class with two public fields (`x` and `y`) and one private field (`label`).
 
 ## Generics
 
-Structs can have generic parameters:
+Classes can have generic parameters:
 
 ```gluax
-struct Wrapper<T> {
+class Wrapper<T> {
     value: T,
 }
 ```
@@ -43,7 +43,7 @@ struct Wrapper<T> {
 ## Example with Methods
 
 ```gluax
-struct Counter {
+class Counter {
     value: number,
 }
 
@@ -53,8 +53,8 @@ impl Counter {
     }
 }
 
-// Generic struct with methods
-struct Pair<T, U> {
+// Generic class with methods
+class Pair<T, U> {
     first: T,
     second: U,
 }
