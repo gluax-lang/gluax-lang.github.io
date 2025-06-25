@@ -2,7 +2,10 @@
 title: Let
 ---
 
-The `let` keyword is used to declare variables in GLuaX. It supports declaring one or more variables, optionally with type annotations, and requires an initializer for each variable.
+The `let` keyword declares variables in GLuaX.
+
+- Variables declared with `let` can be changed after assignment.
+- You must provide an initial value for each variable.
 
 ## Syntax
 
@@ -12,12 +15,11 @@ let a, b: number = 1, 2;
 let x = 42;
 ```
 
-- You can declare multiple variables at once, separated by commas.
-- Each variable can have an optional type annotation (`: Type`).
-- The right-hand side must provide values for all variables.
-- The statement must end with a semicolon (`;`).
+- Multiple variables can be declared at once, separated by commas.
+- Type annotations (`: Type`) are optional for local variables, but **required for top-level (item) variables**.
+- Each variable must be initialized at declaration.
 
-## Example
+## Examples
 
 ```gluax
 let x = 10;
@@ -25,25 +27,21 @@ let y: string = "hello";
 let a, b: number = 1, 2;
 ```
 
-## Item vs. Non-Item `let`
+## Scope
 
-- **Item `let`**: Declared at the top level of a file (outside any function or block). These are global definitions and can be accessed throughout the module.
-  Example:
-  ```gluax
-  let GLOBAL = 123;
-  func main() {
-      print(GLOBAL);
-  }
-  ```
-- **Non-item `let`**: Declared inside functions or blocks. These are local variables and only accessible within their scope.
-  Example:
-  ```gluax
-  func main() {
-      let local = 5;
-      print(local);
-  }
-  ```
+- **Item `let`:** Declared at the top level of a file (outside any function or block). These are global to the module.
+- **Non-item `let`:** Declared inside functions or blocks. These are local to their scope.
 
-**Note:**
+```gluax
+let GLOBAL: number = 123;
 
-- The `pub` keyword (for making a variable public) can only be used with top-level item `let` declarations, not with local variables inside functions or blocks.
+func main() {
+    let local = 5;
+    print(GLOBAL, local);
+}
+```
+
+**Notes:**
+
+- `pub` can only be used with top-level `let`.
+- Type inference is only allowed for local (non-item) variables.

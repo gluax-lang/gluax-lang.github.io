@@ -66,11 +66,6 @@ impl Drawable for Rectangle {
         return self.width * self.height;
     }
 }
-
-func test(d: dyn Drawable) {
-    d.draw();
-    printf("Area: %d", d.area());
-}
 ```
 
 ### Example 2 - Generic Type Implementation
@@ -84,10 +79,6 @@ impl<K, V> Display for map<K, V> {
     func to_string(self) -> string {
         return "Map";
     }
-}
-
-func print_it(d: dyn Display) {
-    print(d.to_string());
 }
 ```
 
